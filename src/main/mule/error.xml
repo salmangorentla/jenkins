@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:module-process-error="http://www.mulesoft.org/schema/mule/module-process-error" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/module-process-error http://www.mulesoft.org/schema/mule/module-process-error/current/mule-module-process-error.xsd">
+	<module-process-error:config name="Module_process_error_Config" doc:name="Module-process-error Config" doc:id="4a00b593-cc5c-4b6d-9436-3dcdc21eae55" />
+	<error-handler name="errorError_Handler" doc:id="1d3d5881-8354-4be7-a022-298079068510" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="5177f13e-c24a-4405-a1bd-1c6fa1236978" >
+			<module-process-error:process-error doc:name="Process error" doc:id="371095b1-e20b-4024-8f09-3ccf6b136b77" config-ref="Module_process_error_Config"/>
+			<flow-ref doc:name="mule-common-error-handling-utilityFlow" doc:id="19d5e241-2ed8-4c36-87d1-4d6c2d40eea4" name="mule-common-error-handling-utilityFlow"/>
+		</on-error-propagate>
+	</error-handler>
+</mule>
