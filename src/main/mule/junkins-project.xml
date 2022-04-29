@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b3b2f82a-c399-4ae6-b489-9f5cb40227a8" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<import doc:name="Import" doc:id="52fcda47-3ba8-4d8a-82a9-325b522d82ae" file="mule-common-error-handling-utility.xml" />
+	<flow name="junkins-projectFlow" doc:id="d3d0a0b6-da54-4259-a386-2cebb2258881" >
+		<http:listener doc:name="Listener" doc:id="b61b1bd0-63ba-44fd-b748-b7f4ec31ba83" config-ref="HTTP_Listener_config" path="/junkins"/>
+		<logger level="INFO" doc:name="Logger" doc:id="24a3aca6-5bda-4c31-88c0-d6322ec63eb6" message="#[payload]"/>
+		<set-payload value='#[output application/json
+---
+{
+	"junkins": "Success"
+}]' doc:name="Set Payload" doc:id="a52feb45-c606-470c-b051-a17346884bb6" />
+	</flow>
+</mule>
